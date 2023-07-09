@@ -1,0 +1,65 @@
+<div id="app"></div>
+
+<style>
+    .m-10 {
+        margin-top: 10px;
+    }
+
+    .red {
+        color: red
+    }
+</style>
+
+<script>
+    function h(tag, props, children) {
+        return {
+            tag,
+            props,
+            children
+        }
+    }
+
+    function mount(vnode, container) {
+        const el = document.createElement(vnode.tag)
+        if (vnode.props) {
+            for (const key in vnode.props) {
+                const value = vnode.props[key];
+                if (typeof value === "object") {
+                    // 这里好难写
+                    // 比如 class 传进来的是一个数组
+                    // 比如 style 传进来的是一个大对象....
+                    // 要写很多的边界判断
+                } else {
+                    el.setAttribute(key, value)
+                }
+            }
+        }
+
+        if (vnode.children) {
+            if (typeof vnode.children === 'string') {
+                el.textContent = vnode.children
+            } else if (typeof vnode.children === 'object') {
+                //这里假设就两种 这种是数组
+                vnode.children.forEach(child => {
+                    //递归调用 第一个参数是vnode数组里面的child 第二个是当前的el
+                    mount(child, el)
+                })
+            }
+        }
+        //最后挂载上去
+        container.appendChild(el)
+    }
+
+    const vdom = h(
+        "div",
+        {
+            class: "m-10",
+            class: "red",
+        },
+        [
+            h("span", null, 'hello')
+        ]
+    )
+
+    mount(vdom, document.querySelector("#app"))
+</script>
