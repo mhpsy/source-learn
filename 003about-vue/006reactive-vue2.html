@@ -1,0 +1,63 @@
+<script>
+    let activeEffect;
+    class Dep {
+        subscribers = new Set()
+        depend() {
+            if (activeEffect) {
+                this.subscribers.add(activeEffect)
+            }
+        }
+        notify() {
+            this.subscribers.forEach(effect => {
+                effect && effect()
+            })
+        }
+    }
+
+    function watchEffect(effect) {
+        activeEffect = effect;
+        effect()//这个实际就是调用的下面的watchEffect里面回调
+        activeEffect = null // clear activeEffect
+    }
+
+    const state = reactive({
+        number: 0,
+        char: "a",
+    })
+
+    function reactive(raw) {
+
+        Object.keys(raw).forEach(key => {
+            const dep = new Dep()
+            let value = raw[key]
+
+            Object.defineProperty(raw, key, {
+                get() {
+                    dep.depend()
+                    return value
+                },
+                set(newV) {
+                    value = newV
+                    dep.notify()
+                }
+            })
+
+        })
+
+        return raw
+    }
+
+    watchEffect(() => {
+        console.log(
+            state.number
+        );
+        console.log(
+            state.char
+        )
+    })
+
+    state.number++;
+    state.char = 'b'
+
+
+</script>
