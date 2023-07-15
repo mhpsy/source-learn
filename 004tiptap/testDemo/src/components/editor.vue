@@ -13,6 +13,7 @@
             :disabled="!editor.can().chain().focus().toggleStrike().run()"
             :class="{ 'is-active': editor.isActive('strike') }">
             strike
+            
         </button>
         <button @click="editor.chain().focus().toggleCode().run()"
             :disabled="!editor.can().chain().focus().toggleCode().run()" :class="{ 'is-active': editor.isActive('code') }">
