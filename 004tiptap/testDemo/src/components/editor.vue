@@ -191,6 +191,7 @@ const setLink = () => {
     height: 300px;
     background-color: #fff;
     padding: 1rem;
+    overflow: auto;
 
     >*+* {
         margin-top: 0.75em;
