@@ -188,6 +188,7 @@ const setLink = () => {
 <style lang="scss">
 /* Basic editor styles */
 .ProseMirror {
+    height: 300px;
     background-color: #fff;
     padding: 1rem;
 
