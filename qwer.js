@@ -1,2 +1,0 @@
-((X)=>((fn)=>fn(`Hello${X}`))(((Y)=>(((fn)=>fn[Y])(console)))("log")))(((Z)=>" "+Z)(((a)=>a+String.fromCharCode(100))("Worl")));
-((X)=>((fn)=>fn(`Stay${X}`))(((Y)=>(((fn)=>fn[Y])(console)))("log")))(((Z)=>" "+Z)(((a)=>a+String.fromCharCode(104))("foolis")));

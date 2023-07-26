@@ -1,1 +1,0 @@
-(()=>{var r={545:r=>{r.exports={dateTransform:(r,o,t)=>`${r}年${o}月${t}日`}}},o={};function t(e){var s=o[e];if(void 0!==s)return s.exports;var n=o[e]={exports:{}};return r[e](n,n.exports,t),n.exports}(()=>{"use strict";const{dateTransform:r}=t(545);console.log(30),console.log(r(2020,10,20))})()})();
