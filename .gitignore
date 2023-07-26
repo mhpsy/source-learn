@@ -1,0 +1,7 @@
+# 忽略node_modules目录和其中的所有内容
+node_modules/
+
+# 忽略构建产生的文件和目录
+# dist/
+# build/
+# out/

@@ -1,0 +1,52 @@
+<script>
+    let activeEffect;
+    class Dep {
+        constructor(value) {
+            this._value = value
+            this.subscribers = new Set()
+        }
+        get value() {
+            this.depend()
+            return this._value
+        }
+        set value(value) {
+            this._value = value
+            this.notify()
+        }
+        depend() {
+            if (activeEffect) {
+                this.subscribers.add(activeEffect)
+            }
+        }
+        notify() {
+            this.subscribers.forEach(effect => {
+                effect && effect()
+            })
+        }
+    }
+
+    function watchEffect(effect) {
+        activeEffect = effect;
+        effect()//这个实际就是调用的下面的watchEffect里面回调
+        activeEffect = null // clear activeEffect
+    }
+
+    const dep = new Dep("xxx");
+
+    watchEffect(() => {
+        // dep.depend() // 因为dep get 的时候会调用depend 所以不需要这里调用了
+        console.log(dep.value);
+    })// effect run
+
+
+    dep.value = "xxxx"
+    dep.value = "xxxx1"
+    dep.value = "xxxx2"
+    // dep.notify()//log two "effect run"
+    /**
+     * 1. watchEffect callback
+     * 2. dep.notify()
+    */
+
+
+</script>
