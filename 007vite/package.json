@@ -1,0 +1,22 @@
+{
+  "name": "007vite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "loadsh": "^0.0.4",
+    "lodash-es": "^4.17.21",
+    "vite": "^4.4.7"
+  },
+  "devDependencies": {
+    "less": "^4.1.3",
+    "postcss": "^8.4.27",
+    "postcss-preset-env": "^9.1.0"
+  }
+}
