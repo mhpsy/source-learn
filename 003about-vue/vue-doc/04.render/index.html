@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script src="./app.js"></script>
+
+<script>
+    const vNode = h('div', {
+        style: {
+            color: 'red',
+            fontSize: '20px'
+        }
+    }, [
+        h('h1', null, 'hello'),
+        h('div', {
+            class: 'box-world'
+        }, 'world')
+    ])
+
+    mount(vNode, "#app")
+
+
+    const newVNode = h('div', {
+        style: {
+            color: 'blue',
+            fontSize: '30px'
+        }
+    }, [
+        h('h1', null, 'hello patch'),
+        h('div', {
+            class: 'box-world'
+        }, 'world patch'),
+        h('div', {
+            style: {
+                color: 'red',
+                fontSize: '20px'
+            },
+            class: 'box-world'
+        }, 'patch')
+    ])
+
+    setTimeout(() => {
+        patch(vNode, newVNode)
+    }, 2000)
+</script>
+
+</body>
+</html>
